@@ -6,12 +6,14 @@ const ReviewCard = ({ gameReview }) => {
     return(
         <div className = "reviewCard">
         <Card sx={{ maxWidth: 345 }}>
+
         <CardMedia 
         component = "img"
         height = "140"
-        image = {gameReview.reivew_img_url}
+        image = {gameReview.review_img_url}
         alt = {gameReview.title}
         />
+
         <CardContent>
         <h3 className="review-name">
           {gameReview.title}
