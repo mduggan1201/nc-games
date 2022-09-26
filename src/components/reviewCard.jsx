@@ -16,6 +16,7 @@ const ReviewCard = ({ gameReview }) => {
         <h3 className="review-name">
           {gameReview.title}
         </h3>
+        <p>Category: {gameReview.category}</p>
       </CardContent>
       </Card>
       </div>
@@ -23,10 +24,3 @@ const ReviewCard = ({ gameReview }) => {
 }
 
 export default ReviewCard
-
-
-
-
-// return(
-//     <li key = {gameReview.review_id}>{gameReview.title} </li> 
-//     )
