@@ -1,15 +1,17 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { Link } from 'react-router-dom';
 
 const ReviewCard = ({ gameReview }) => {
     return(
         <div className = "reviewCard">
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ width: 345, height: 400 }}>
 
         <CardMedia 
         component = "img"
         height = "140"
+        width = "345"
         image = {gameReview.review_img_url}
         alt = {gameReview.title}
         />
@@ -20,6 +22,7 @@ const ReviewCard = ({ gameReview }) => {
         </h3>
         <p>Category: {gameReview.category}</p>
       </CardContent>
+      <Link to = {`/reviews/${gameReview.review_id}`} className = "linker">Find Out More</Link>
       </Card>
       </div>
         )

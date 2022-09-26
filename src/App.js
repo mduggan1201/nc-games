@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/header';
 import Home from './components/home';
 import Nav from './components/nav';
+import ReviewDescription from './components/reviewDescription';
 import ReviewList from './components/reviewList';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       <Routes>
         <Route path ="/" element ={<Home />} />
         <Route path ="/reviews" element ={<ReviewList />} />
-      </Routes>
+        <Route path ="/reviews/:review_id" element={<ReviewDescription />} />      </Routes>
     </BrowserRouter>
     </div>
   );
