@@ -1,12 +1,13 @@
 import axios from 'axios'
 
-const reviewsApi = axios.create({
-    baseUrl: "https://portfolio-games-api.herokuapp.com/api"
-})
-
 export const getReviews = () => {
-    return reviewsApi.get('https://portfolio-games-api.herokuapp.com/api/reviews').then((res) => {
+    return axios.get('https://portfolio-games-api.herokuapp.com/api/reviews').then((res) => {
         return res.data
-        
+    })
+}
+
+export const getReviewById = (review_id) => {
+    return axios.get(`https://portfolio-games-api.herokuapp.com/api/reviews/${review_id}`).then((res) => {
+        return res.data
     })
 }
