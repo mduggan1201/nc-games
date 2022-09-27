@@ -1,25 +1,49 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getReviewById } from "../utils/api"
+import { getReviewById, updateReviewById } from "../utils/api"
 import { Link } from "react-router-dom"
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { Button } from "@mui/material";
 
 const ReviewDescription = () => {
     const [gameReview, setGameReview] = useState()
     const [isLoading, setIsLoading] = useState(true)
+    const [reviewVotes, setReviewVotes] = useState()
 
     let { review_id } = useParams()
+
+    const handleUpvote = (() => {
+        updateReviewById(review_id, 1)
+        setReviewVotes((currVotes) => {
+            let newVotes = 0
+            newVotes = currVotes +1 
+            return newVotes
+        })
+        console.log(reviewVotes)
+    })
+
+    const handleDownvote = (() => {
+        updateReviewById(review_id, -1)
+        setReviewVotes((currVotes) => {
+            let newVotes = 0
+            newVotes = currVotes -1 
+            return newVotes
+        })
+        console.log(reviewVotes)
+    })
 
     useEffect(() => {
         getReviewById(review_id)
         .then(({ review }) => {
             setGameReview(review)
+            setReviewVotes(review.votes)
             setIsLoading(false)
         })
     },[])
+
 
 
 if(isLoading) return <p>`Loading Item information for ID:${review_id}`</p>
@@ -62,9 +86,14 @@ return(
         <Typography component="p" variant = "h6">
         {gameReview.review_body}
         </Typography><br/>
-        <Typography component ="h3" variant = "h4">
+        <Typography component ="h4" variant = "h4">
         Comments: {gameReview.comment_count}
         </Typography><br/>
+        <Typography component ="h5" variant = "h5">
+        Votes: {reviewVotes}
+        </Typography>
+        <Button variant ="outlined" sx={{ width: 345 }} onClick={() => {handleUpvote()}}>Upvote This Review</Button>
+        <Button variant ="outlined" sx={{ width: 345 }} onClick={() => {handleDownvote()}}>Downvote This Review</Button>
 
         <p>Placeholder for comment cards to be listed here</p>
         </Box>
@@ -74,3 +103,6 @@ return(
 }
  
 export default ReviewDescription
+
+
+//to do - add error handling for when vote patch request fails. currently set up to be optimistic rendering.
