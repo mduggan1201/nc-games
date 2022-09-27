@@ -19,7 +19,7 @@ const ReviewDescription = () => {
             setGameReview(review)
             setIsLoading(false)
         })
-    })
+    },[])
 
 
 if(isLoading) return <p>`Loading Item information for ID:${review_id}`</p>

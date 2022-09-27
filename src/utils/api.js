@@ -11,3 +11,9 @@ export const getReviewById = (review_id) => {
         return res.data
     })
 }
+
+export const getReviewsByCategory = (category) => {
+    return axios.get(`https://portfolio-games-api.herokuapp.com/api/reviews?category=${category}`).then((res) => {
+        return res.data
+    })
+}
