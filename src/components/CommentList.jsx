@@ -30,12 +30,14 @@ const CommentList = ({ review_id }) => {
             }}
         >
             <Typography component="h2" variant = "h4">{`Comments`}</Typography>
+            {gameComments.length === 0 ? <p>No Comments for this Review</p> :
             <ul>
                 {gameComments.map((gameComment) => {
                     return ( <CommentCard key = {gameComment.comment_id} gameComment ={gameComment} />
                     )
                 })}
             </ul>
+            }
             </Box>
     )
 }

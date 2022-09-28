@@ -15,14 +15,15 @@ const Nav = () => {
         })
     }, [])
 
+
     if(isLoading) return <p>Loading Category Navigation...</p>
 
     return (
         <nav className="navBar">
             <Link to="/">Home</Link><br />
-                {categories.map((category) => {
-                    return( <div>
-                                <Link to={`/reviews/category/${category.slug}`}>{category.slug} Games</Link> <br />
+                {categories.map((category, index) => {
+                    return( <div key={index}>
+                                <Link to={`/reviews/category/${category.slug}`} >{category.slug} Games</Link> <br />
                             </div>
                     )
                 })}
