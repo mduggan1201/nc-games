@@ -23,3 +23,9 @@ export const updateReviewById = (review_id, vote_change) => {
         return res.data
     })
 }
+
+export const getCommentsByReviewId = (review_id) => {
+    return axios.get(`https://portfolio-games-api.herokuapp.com/api/reviews/${review_id}/comments`).then((res) => {
+        return res.data
+    })
+}

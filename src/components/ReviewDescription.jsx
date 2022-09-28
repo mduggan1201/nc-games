@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { Button } from "@mui/material";
+import CommentList from "./CommentList";
 
 const ReviewDescription = () => {
     const [gameReview, setGameReview] = useState()
@@ -85,16 +86,13 @@ return(
         <Typography component="p" variant = "h6">
         {gameReview.review_body}
         </Typography><br/>
-        <Typography component ="h4" variant = "h4">
-        Comments: {gameReview.comment_count}
-        </Typography><br/>
         <Typography component ="h5" variant = "h5">
         Votes: {reviewVotes}
         </Typography>
         <Button variant ="outlined" sx={{ width: 345 }} onClick={() => {handleUpvote()}}>Upvote This Review</Button>
         <Button variant ="outlined" sx={{ width: 345 }} onClick={() => {handleDownvote()}}>Downvote This Review</Button>
 
-        <p>Placeholder for comment cards to be listed here</p>
+        <CommentList review_id = {review_id}/>
         </Box>
     </Grid>
 </Grid>
