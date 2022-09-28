@@ -22,7 +22,6 @@ const ReviewDescription = () => {
             newVotes = currVotes +1 
             return newVotes
         })
-        console.log(reviewVotes)
     })
 
     const handleDownvote = (() => {
