@@ -1,5 +1,11 @@
 import axios from 'axios'
 
+export const getCategories = () => {
+    return axios.get('https://portfolio-games-api.herokuapp.com/api/categories').then((res) => {
+        return res.data
+    })
+}
+
 export const getReviews = () => {
     return axios.get('https://portfolio-games-api.herokuapp.com/api/reviews').then((res) => {
         return res.data
