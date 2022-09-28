@@ -46,3 +46,7 @@
 .linker{
   text-align: center;
 }
+
+.commentCard{
+  display:inline-table;
+}

@@ -1,0 +1,47 @@
+import { useState, useEffect } from "react"
+import { getCommentsByReviewId } from "../utils/api"
+import CommentCard from "./CommentCard"
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
+const CommentList = ({ review_id }) => {
+    const [gameComments, setGameComments] = useState()
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        getCommentsByReviewId(review_id)
+        .then(({ comments }) => {
+            setGameComments(comments)
+            setIsLoading(false)
+        })
+    })
+
+    if(isLoading) return <p>Loading Comment List...</p>
+
+    return (
+        <Box
+            sx={{
+            my: 8,
+            mx: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            
+            }}
+        >
+            <Typography component="h2" variant = "h4">{`Comments`}</Typography>
+            {gameComments.length === 0 ? <p>No Comments for this Review</p> :
+            <ul>
+                {gameComments.map((gameComment) => {
+                    return ( <CommentCard key = {gameComment.comment_id} gameComment ={gameComment} />
+                    )
+                })}
+            </ul>
+            }
+            </Box>
+    )
+}
+
+export default CommentList
+
+/// To Do - Add Error handling for 404 requests
