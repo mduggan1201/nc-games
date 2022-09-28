@@ -17,3 +17,9 @@ export const getReviewsByCategory = (category) => {
         return res.data
     })
 }
+
+export const updateReviewById = (review_id, vote_change) => {
+    return axios.patch(`https://portfolio-games-api.herokuapp.com/api/reviews/${review_id}`,{"inc_votes":vote_change}).then((res) => {
+        return res.data
+    })
+}
