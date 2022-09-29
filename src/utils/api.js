@@ -10,8 +10,13 @@ export const getCategories = () => {
     })
 }
 
-export const getReviews = () => {
-    return gamesAPI.get('/reviews').then((res) => {
+export const getReviews = (sortedBy, orderedBy) => {
+    return gamesAPI.get('/reviews',
+    {params: {
+        sort_by: sortedBy,
+        order: orderedBy
+    }
+}).then((res) => {
         return res.data
     })
 }
@@ -22,8 +27,14 @@ export const getReviewById = (review_id) => {
     })
 }
 
-export const getReviewsByCategory = (category) => {
-    return gamesAPI.get(`/reviews?category=${category}`).then((res) => {
+export const getReviewsByCategory = (category, sortedBy, orderedBy) => {
+    return gamesAPI.get(`/reviews`,
+    {params: {
+        category: category,
+        sort_by: sortedBy,
+        order: orderedBy
+    }
+}).then((res) => {
         return res.data
     })
 }

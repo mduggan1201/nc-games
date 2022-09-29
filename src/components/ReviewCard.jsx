@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const ReviewCard = ({ gameReview }) => {
     return(
         <div className = "reviewCard">
-        <Card sx={{ width: 345, height: 400 }}>
+        <Card sx={{ width: 345, height: 420 }}>
 
         <CardMedia 
         component = "img"
@@ -21,6 +21,9 @@ const ReviewCard = ({ gameReview }) => {
           {gameReview.title}
         </h3>
         <p>Category: {gameReview.category}</p>
+        <p>Date: {gameReview.created_at}</p>
+        <p>Comments: {gameReview.comment_count}</p>
+        <p>Votes: {gameReview.votes}</p>
       </CardContent>
       <Link to = {`/reviews/${gameReview.review_id}`} className = "linker">Find Out More</Link>
       </Card>
