@@ -35,3 +35,9 @@ export const getCommentsByReviewId = (review_id) => {
         return res.data
     })
 }
+
+export const postComment = (review_id, author, body) => {
+    return axios.post(`https://portfolio-games-api.herokuapp.com/api/reviews/${review_id}/comments`,{"author": author, "body": body}).then((res) => {
+        return res.data
+    })
+}

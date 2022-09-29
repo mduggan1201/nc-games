@@ -3,6 +3,7 @@ import { getCommentsByReviewId } from "../utils/api"
 import CommentCard from "./CommentCard"
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import NewComment from "./NewComment";
 
 const CommentList = ({ review_id }) => {
     const [gameComments, setGameComments] = useState()
@@ -25,11 +26,11 @@ const CommentList = ({ review_id }) => {
             mx: 4,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            
+            alignItems: 'center'
             }}
         >
             <Typography component="h2" variant = "h4">{`Comments`}</Typography>
+            <NewComment review_id = {review_id}/>
             {gameComments.length === 0 ? <p>No Comments for this Review</p> :
             <ul>
                 {gameComments.map((gameComment) => {
