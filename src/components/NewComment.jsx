@@ -7,13 +7,17 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { postComment } from '../utils/api';
+import { Box } from '@mui/system';
 
 const NewComment = ({ review_id }) => {
 
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
+    const [isError, setError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState()
     const authorRef = useRef('')
     const bodyRef = useRef('')
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -26,13 +30,34 @@ const NewComment = ({ review_id }) => {
     const handleClose = () => {
         setOpen(false);
         setIsLoading(true)
-        console.log(bodyRef.current.value)
         postComment(review_id, authorRef.current.value, bodyRef.current.value)
         .then(setIsLoading(false))
+        .catch((err) => {
+          setError(true)
+          setErrorMessage(err.response.data.msg)
+        })
       };
 
+    const handleReset = () => {
+      setError(false)
+      setErrorMessage()
+    }
+
       if(isLoading) return <p>Adding Comment to Database...</p>
-    
+      if(isError) return (<Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}
+        >
+      <h4> {errorMessage} </h4>
+        <Button variant="outlined" onClick={handleReset} sx={{ width: 345,  }}>
+        Try Again
+      </Button>
+      </Box>
+      )
+      
       return (
         <div>
           <Button variant="outlined" onClick={handleClickOpen}>
