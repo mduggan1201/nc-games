@@ -15,7 +15,7 @@ const CommentList = ({ review_id }) => {
             setGameComments(comments)
             setIsLoading(false)
         })
-    })
+    }, [review_id])
 
     if(isLoading) return <p>Loading Comment List...</p>
 
@@ -31,14 +31,12 @@ const CommentList = ({ review_id }) => {
         >
             <Typography component="h2" variant = "h4">{`Comments`}</Typography>
             <NewComment review_id = {review_id}/>
-            {gameComments.length === 0 ? <p>No Comments for this Review</p> :
             <ul>
                 {gameComments.map((gameComment) => {
-                    return ( <CommentCard key = {gameComment.comment_id} gameComment ={gameComment} />
+                    return ( <CommentCard key = {gameComment.comment_id} gameComment ={gameComment} setGameComments ={setGameComments} review_id = {review_id} setIsLoading = {setIsLoading} />
                     )
                 })}
             </ul>
-            }
             </Box>
     )
 }
